@@ -3,7 +3,7 @@ let
   repos = (pkgs.callPackage ../../repos.nix {});
   patches = repos.linux-surface + "/patches";
   surface_kernelPatches = [
-    { name = "microsoft-surface-patches-linux-5.10.19";
+    { name = "microsoft-surface-patches-linux-5.12.6";
       patch = null;
       extraConfig = ''
           #
@@ -81,47 +81,39 @@ let
     }
     {
       name = "ms-surface/0001-surface3-oemb";
-      patch = patches + "/5.10/0001-surface3-oemb.patch";
+      patch = patches + "/5.12/0001-surface3-oemb.patch";
     }
     {
       name = "ms-surface/0002-wifi";
-      patch = patches + "/5.10/0002-wifi.patch";
+      patch = patches + "/5.12/0002-mwifiex.patch";
     }
     {
-      name = "ms-surface/0003-ipts";
-      patch = patches + "/5.10/0003-ipts.patch";
+      name = "ms-surface/0003-ath10k";
+      patch = patches + "/5.12/0004-ath10k.patch";
     }
     {
-      name = "ms-surface/0004-surface-gpe";
-      patch = patches + "/5.10/0004-surface-gpe.patch";
+      name = "ms-surface/0004-ipts";
+      patch = patches + "/5.12/0004-ipts.patch";
     }
     {
       name = "ms-surface/0005-surface-sam-over-hid";
-      patch = patches + "/5.10/0005-surface-sam-over-hid.patch";
+      patch = patches + "/5.12/0005-surface-sam-over-hid.patch";
     }
     {
       name = "ms-surface/0006-surface-sam";
-      patch = patches + "/5.10/0006-surface-sam.patch";
+      patch = patches + "/5.12/0006-surface-sam.patch";
     }
     {
-      name = "ms-surface/0007-surface-hotplug";
-      patch = patches + "/5.10/0007-surface-hotplug.patch";
+      name = "ms-surface/0007-surface-typecover";
+      patch = patches + "/5.12/0007-surface-typecover.patch";
     }
     {
-      name = "ms-surface/0008-surface-typecover";
-      patch = patches + "/5.10/0008-surface-typecover.patch";
-    }
-    {
-      name = "ms-surface/0009-surface-sensors";
-      patch = patches + "/5.10/0009-surface-sensors.patch";
-    }
-    {
-      name = "ms-surface/0010-cameras";
-      patch = patches + "/5.10/0010-cameras.patch";
+      name = "ms-surface/0008-cameras";
+      patch = patches + "/5.12/0008-cameras.patch";
     }
   ];
 in (with pkgs; recurseIntoAttrs (linuxPackagesFor (
-     callPackage ./linux-5.10.19.nix {
+     callPackage ./linux-5.12.6.nix {
        kernelPatches = surface_kernelPatches;
      }
    )))

@@ -3,8 +3,11 @@
   linux-surface = fetchFromGitHub {
     owner="linux-surface";
     repo="linux-surface";
-    rev="f8fab978a480a4ed57e9ebb6928683b2e443c1c5";
-    sha256="0zwybprwjckpapxm6gxzh6hwdd1w91g5sjxn6z52zlvvjpkmw959";
+    rev="efaa3edaaa3b7e33af3cf716dac64bb1faa6ccc3";
+    sha256="sha256-6kHmCcWwoQW/HOLj8kfhyzdemvRW/njBAtkyfIdI9zU=";
+    # Original
+    #rev="f8fab978a480a4ed57e9ebb6928683b2e443c1c5";
+    #sha256="0zwybprwjckpapxm6gxzh6hwdd1w91g5sjxn6z52zlvvjpkmw959";
   };
 
   ath10k-firmware = fetchFromGitHub {

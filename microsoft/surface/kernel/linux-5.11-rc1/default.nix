@@ -1,9 +1,8 @@
 { config, lib, pkgs, ... }:
 let
   repos = (pkgs.callPackage ../../repos.nix {});
-  patches = repos.linux-surface + "/patches";
   surface_kernelPatches = [
-    { name = "microsoft-surface-patches-linux-5.10.19";
+    { name = "microsoft-surface-patches-linux-5.11-rc1";
       patch = null;
       extraConfig = ''
           #
@@ -79,49 +78,9 @@ let
           SURFACE_BOOK1_DGPU_SWITCH m
         '';
     }
-    {
-      name = "ms-surface/0001-surface3-oemb";
-      patch = patches + "/5.10/0001-surface3-oemb.patch";
-    }
-    {
-      name = "ms-surface/0002-wifi";
-      patch = patches + "/5.10/0002-wifi.patch";
-    }
-    {
-      name = "ms-surface/0003-ipts";
-      patch = patches + "/5.10/0003-ipts.patch";
-    }
-    {
-      name = "ms-surface/0004-surface-gpe";
-      patch = patches + "/5.10/0004-surface-gpe.patch";
-    }
-    {
-      name = "ms-surface/0005-surface-sam-over-hid";
-      patch = patches + "/5.10/0005-surface-sam-over-hid.patch";
-    }
-    {
-      name = "ms-surface/0006-surface-sam";
-      patch = patches + "/5.10/0006-surface-sam.patch";
-    }
-    {
-      name = "ms-surface/0007-surface-hotplug";
-      patch = patches + "/5.10/0007-surface-hotplug.patch";
-    }
-    {
-      name = "ms-surface/0008-surface-typecover";
-      patch = patches + "/5.10/0008-surface-typecover.patch";
-    }
-    {
-      name = "ms-surface/0009-surface-sensors";
-      patch = patches + "/5.10/0009-surface-sensors.patch";
-    }
-    {
-      name = "ms-surface/0010-cameras";
-      patch = patches + "/5.10/0010-cameras.patch";
-    }
   ];
 in (with pkgs; recurseIntoAttrs (linuxPackagesFor (
-     callPackage ./linux-5.10.19.nix {
+     callPackage ./linux-5.11-rc1.nix {
        kernelPatches = surface_kernelPatches;
      }
    )))
